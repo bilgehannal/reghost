@@ -140,9 +140,9 @@ build-all-platforms: build-all
 	@echo "Creating archives..."
 	@cd $(BUILD_DIR) && for dir in */; do \
 		platform=$${dir%/}; \
-		archive_name=reghost-$(VERSION)-$$platform.tar.gz; \
+		archive_name=reghost-$$platform.tar.gz; \
 		echo "Creating $$archive_name..."; \
-		tar -czf $$archive_name $$platform; \
+		tar -czf $$archive_name -C $$platform $(BINARY_DAEMON) $(BINARY_CLI); \
 	done
 	@echo ""
 	@echo "Archives created:"
