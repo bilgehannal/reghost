@@ -35,6 +35,51 @@ jobs:
         with:
           files: |
             build/*.tar.gz
+          body: |
+            ## reghost ${{ steps.version.outputs.VERSION }}
+            
+            A lightweight DNS server daemon with dynamic configuration management for local development.
+            
+            ### Quick Install
+            
+            **macOS (Apple Silicon):**
+            ```bash
+            curl -L https://github.com/bilgehannal/reghost/releases/download/${{ steps.version.outputs.VERSION }}/reghost-darwin-arm64.tar.gz | sudo tar -xz -C /usr/local/bin && sudo chmod 6755 /usr/local/bin/reghost{d,ctl} && sudo chgrp admin /usr/local/bin/reghost{d,ctl}
+            ```
+            
+            **macOS (Intel):**
+            ```bash
+            curl -L https://github.com/bilgehannal/reghost/releases/download/${{ steps.version.outputs.VERSION }}/reghost-darwin-amd64.tar.gz | sudo tar -xz -C /usr/local/bin && sudo chmod 6755 /usr/local/bin/reghost{d,ctl} && sudo chgrp admin /usr/local/bin/reghost{d,ctl}
+            ```
+            
+            **Linux (x64):**
+            ```bash
+            curl -L https://github.com/bilgehannal/reghost/releases/download/${{ steps.version.outputs.VERSION }}/reghost-linux-amd64.tar.gz | sudo tar -xz -C /usr/local/bin && sudo chmod 6755 /usr/local/bin/reghost{d,ctl} && sudo chgrp root /usr/local/bin/reghost{d,ctl}
+            ```
+            
+            **Linux (ARM64):**
+            ```bash
+            curl -L https://github.com/bilgehannal/reghost/releases/download/${{ steps.version.outputs.VERSION }}/reghost-linux-arm64.tar.gz | sudo tar -xz -C /usr/local/bin && sudo chmod 6755 /usr/local/bin/reghost{d,ctl} && sudo chgrp root /usr/local/bin/reghost{d,ctl}
+            ```
+            
+            ### Getting Started
+            
+            1. Start the daemon:
+               ```bash
+               reghostd
+               ```
+            
+            2. Add a DNS record:
+               ```bash
+               reghostctl add-record default --domain myapp.local --ip 192.168.1.100
+               ```
+            
+            3. Test it:
+               ```bash
+               ping myapp.local
+               ```
+            
+            ### What's Changed
           generate_release_notes: true
           draft: false
           prerelease: false
