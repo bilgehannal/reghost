@@ -113,7 +113,7 @@ func (w *Writer) RemoveRecord(recordSetName string, index int) error {
 	return w.Write(config)
 }
 
-// CreateRecordSet creates a new record set
+// CreateRecordSet creates a new record set with a default record
 func (w *Writer) CreateRecordSet(name string) error {
 	// Load current config
 	config, err := Load(w.configPath)
@@ -126,8 +126,13 @@ func (w *Writer) CreateRecordSet(name string) error {
 		return fmt.Errorf("record set '%s' already exists", name)
 	}
 
-	// Create empty record set
-	config.Records[name] = []reghost.Record{}
+	// Create record set with default record
+	config.Records[name] = []reghost.Record{
+		{
+			Domain: "reghost.local",
+			IP:     "127.0.0.1",
+		},
+	}
 
 	// Write back
 	return w.Write(config)

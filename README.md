@@ -72,7 +72,7 @@ This will:
 
 ```bash
 # The daemon needs to run as root
-sudo reghostd
+reghostd
 ```
 
 The daemon will:
@@ -87,31 +87,31 @@ The daemon will:
 
 ```bash
 # View current configuration
-sudo reghostctl show
+reghostctl show
 
 # Add a new record to the default set
-sudo reghostctl add-record default \
+reghostctl add-record default \
   --domain "myapp.local" \
   --ip "192.168.1.100"
 
 # Add a regex pattern
-sudo reghostctl add-record default \
+reghostctl add-record default \
   --domain "^[a-z]+\.dev\.$" \
   --ip "10.0.0.1"
 
 # Create a new record set
-sudo reghostctl create-set production
+reghostctl create-set production
 
 # Add records to the new set
-sudo reghostctl add-record production \
+reghostctl add-record production \
   --domain "api.myapp.com" \
   --ip "10.113.241.216"
 
 # Switch active record set
-sudo reghostctl set-active production
+reghostctl set-active production
 
 # List all record sets
-sudo reghostctl list
+reghostctl list
 ```
 
 ## Configuration
@@ -162,25 +162,25 @@ records:
 ### Show Configuration
 
 ```bash
-sudo reghostctl show
+reghostctl show
 ```
 
 ### List Record Sets
 
 ```bash
-sudo reghostctl list
+reghostctl list
 ```
 
 ### Set Active Record Set
 
 ```bash
-sudo reghostctl set-active <record-set-name>
+reghostctl set-active <record-set-name>
 ```
 
 ### Add Record
 
 ```bash
-sudo reghostctl add-record <record-set> \
+reghostctl add-record <record-set> \
   --domain "example.local" \
   --ip "192.168.1.1"
 ```
@@ -189,20 +189,20 @@ sudo reghostctl add-record <record-set> \
 
 ```bash
 # Remove record at index 0 from the set
-sudo reghostctl remove-record <record-set> --index 0
+reghostctl remove-record <record-set> --index 0
 ```
 
 ### Create Record Set
 
 ```bash
-sudo reghostctl create-set <record-set-name>
+reghostctl create-set <record-set-name>
 ```
 
 ### Delete Record Set
 
 ```bash
 # Note: Cannot delete the active record set
-sudo reghostctl delete-set <record-set-name>
+reghostctl delete-set <record-set-name>
 ```
 
 ## System DNS Configuration
@@ -327,7 +327,7 @@ make build-cli
 
 ```bash
 # Check if running as root
-sudo reghostd
+reghostd
 
 # Check if port 53 is already in use
 sudo lsof -i :53
@@ -343,10 +343,10 @@ sudo tail -f /var/log/reghost.log
 dig @127.x.x.x -p 53 myapp.local
 
 # Check active record set
-sudo reghostctl show
+reghostctl show
 
 # Verify domain is in active record set
-sudo reghostctl list
+reghostctl list
 ```
 
 ### Config not reloading
@@ -356,7 +356,7 @@ sudo reghostctl list
 sudo tail -f /var/log/reghost.log
 
 # Manually validate config
-sudo reghostctl show
+reghostctl show
 ```
 
 ## Contributing
